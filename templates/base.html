@@ -1,23 +1,15 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Mokhorekhi Lebohang — Data Scientist{% endblock %}</title>
   <meta name="description" content="Mokhorekhi Lebohang — data scientist working on forecasting, optimisation and MLOps.">
+  <meta name="color-scheme" content="light">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@300..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <script>
-    (function () {
-      try {
-        var stored = localStorage.getItem("theme");
-        var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        document.documentElement.setAttribute("data-theme", theme);
-      } catch (err) {}
-    })();
-  </script>
   {% block head %}{% endblock %}
 </head>
 <body>
@@ -32,10 +24,6 @@
         <a href="{{ url_for('home') }}#about" class="nav-link">About</a>
         <a href="{{ url_for('home') }}#stack" class="nav-link">Stack</a>
         <a href="{{ url_for('home') }}#contact" class="nav-link">Contact</a>
-        <button type="button" class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
-          <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4"></path></svg>
-          <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"></path></svg>
-        </button>
         <span class="nav-divider"></span>
         <a href="{{ url_for('static', filename='resume.pdf') }}" class="btn btn-accent btn-sm" download>Resume</a>
       </nav>
@@ -53,6 +41,5 @@
     </div>
   </div>
 
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
