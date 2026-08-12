@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found — Mokhorekhi Lebohang{% endblock %}
+
+{% block content %}
+  <section class="wrap section not-found">
+    <div class="t-eyebrow">404</div>
+    <h1 class="section-title">Page not found</h1>
+    <p class="contact-lede">That page doesn't exist, or the project moved.</p>
+    <a href="{{ url_for('home') }}" class="btn btn-accent">← Back home</a>
+  </section>
+{% endblock %}

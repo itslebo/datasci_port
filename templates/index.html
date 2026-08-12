@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="hero-a wrap">
+    <h1 class="hero-a-title">Mokhorekhi Lebohang</h1>
+    <p class="hero-a-sub">ML, Data Science and optimizing workflows. I build models that hold up in production and tighten the operations around them.</p>
+    <div class="hero-a-stats">
+      <div class="stat">
+        <div class="t-eyebrow">Experience</div>
+        <div class="stat-value mono">6 yrs</div>
+      </div>
+      <div class="stat">
+        <div class="t-eyebrow">Models in production</div>
+        <div class="stat-value mono">11</div>
+      </div>
+      <div class="stat">
+        <div class="t-eyebrow">Focus</div>
+        <div class="stat-note">Forecasting, optimisation, MLOps</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="wrap section">
+    <div class="section-head">
+      <div>
+        <div class="t-eyebrow">Selected work</div>
+        <h2 class="section-title">Projects</h2>
+      </div>
+      <span class="mono muted-note">{{ projects|length }} case studies</span>
+    </div>
+
+    <div class="project-grid">
+      {% for p in projects %}
+      <article class="project-card">
+        <div class="project-card-preview">
+          <svg width="20" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17h2v4H3v-4zm4-6h2v10H7V11zm4-4h2v14h-2V7zm4 8h2v6h-2v-6zm4-11h2v17h-2V4z"/></svg>
+          <span class="t-eyebrow">{{ p.preview_label }}</span>
+        </div>
+        <div class="project-card-meta">
+          <span class="chip chip-accent">{{ p.domain }}</span>
+          <span class="mono muted-note">{{ p.year }}</span>
+        </div>
+        <div>
+          <h3 class="project-card-title">{{ p.title }}</h3>
+          <p class="project-card-blurb">{{ p.blurb }}</p>
+        </div>
+        <div class="project-card-stack">
+          {% for s in p.stack %}
+          <span class="chip">{{ s }}</span>
+          {% endfor %}
+        </div>
+        <div class="project-card-footer">
+          <div>
+            <div class="t-eyebrow">{{ p.headline_label }}</div>
+            <div class="mono project-card-headline">{{ p.headline_value }}</div>
+          </div>
+          <a href="{{ url_for('project', slug=p.slug) }}" class="btn btn-accent btn-sm">Open case study →</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section id="about" class="wrap section">
+    <div class="split-head">
+      <div>
+        <div class="t-eyebrow">About</div>
+        <h2 class="section-title">Background</h2>
+      </div>
+      <div class="split-body">
+        <p>I work at the seam between modelling and operations. Most of my projects start with a team that has data it does not trust and a process that takes too long, and end with a model in production plus a shorter path from question to answer.</p>
+        <p>That means I spend as much time on pipelines, monitoring and handover documentation as on the model itself. The forecasting work below runs on a weekly schedule with no manual steps. The extraction pipeline replaced a spreadsheet that three people maintained by hand.</p>
+        <p>Before data science I worked in industrial engineering, which is where the optimisation habit comes from.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack" class="wrap section">
+    <div class="split-head">
+      <div>
+        <div class="t-eyebrow">Toolkit</div>
+        <h2 class="section-title">Skills and stack</h2>
+      </div>
+      <div class="skill-grid">
+        {% for g in skill_groups %}
+        <div class="skill-card">
+          <div class="t-eyebrow">{{ g.label }}</div>
+          <div class="skill-items">
+            {% for t in g.tools %}
+            <span class="chip">{{ t }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap section section-last">
+    <div class="contact-panel">
+      <div class="contact-info">
+        <div class="t-eyebrow">Contact</div>
+        {% if request.args.get('sent') == 'success' %}
+        <p class="contact-status contact-status-ok">Thanks — you'll get a reply within two working days.</p>
+        {% elif request.args.get('sent') == 'error' %}
+        <p class="contact-status contact-status-err">Please include your email and a message.</p>
+        {% else %}
+        <p class="contact-lede">Send a brief and a timeline. You will get a reply within two working days.</p>
+        {% endif %}
+        <div class="contact-links">
+          <a href="mailto:lebohang@example.com" class="mono contact-link">lebohang@example.com</a>
+          <a href="#" class="mono contact-link">github.com/lebohang</a>
+          <a href="#" class="mono contact-link">linkedin.com/in/lebohang</a>
+        </div>
+      </div>
+      <form class="contact-form" method="post" action="{{ url_for('contact') }}">
+        <label class="field">
+          <span class="t-eyebrow">Email address</span>
+          <input type="email" name="email" placeholder="you@company.com" required>
+        </label>
+        <label class="field">
+          <span class="t-eyebrow">Contact information</span>
+          <input type="text" name="info" placeholder="Name, company, phone">
+        </label>
+        <label class="field">
+          <span class="t-eyebrow">Message</span>
+          <textarea name="message" rows="5" placeholder="What you are working on, and the timeline." required></textarea>
+        </label>
+        <button type="submit" class="btn btn-accent">Send message</button>
+      </form>
+    </div>
+  </section>
+{% endblock %}
